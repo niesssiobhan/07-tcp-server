@@ -6,7 +6,9 @@ const net = require('net');
 // Third Party Modules
 const uuid = require('uuid/v4');
 
-const port = process.env.PORT || 3001;
+const EventEmitter = require('events');
+
+const port = process.env.PORT || 3000;
 const server = net.createServer();
 const socketPool = {};
 const commands = {};

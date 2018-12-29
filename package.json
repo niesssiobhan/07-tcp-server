@@ -1,15 +1,27 @@
 {
   "name": "class-06",
   "version": "1.0.0",
-  "description": "",
+  "description": "![CF](http://i.imgur.com/7v5ASc8.png) LAB =================================================",
   "main": "chatroom.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "siobhan niess",
+  "license": "MIT",
   "dependencies": {
+    "eslint": "^5.11.1",
+    "jest": "^23.6.0",
+    "node": "^11.5.0",
     "uuid": "^3.2.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niesssiobhan/07-tcp-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/niesssiobhan/07-tcp-server/issues"
+  },
+  "homepage": "https://github.com/niesssiobhan/07-tcp-server#readme"
 }
