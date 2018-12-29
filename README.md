@@ -7,8 +7,8 @@
 
 ### Links and Resources
 * [repo](https://github.com/niesssiobhan/07-tcp-server)
-* [travis](http://xyz.com)
-* [server](http://xyz.com)
+* [travis](https://travis-ci.com/niesssiobhan/07-tcp-server)
+* [server](https://git.heroku.com/niess-lab-07.git)
 
 ### Modules
 #### `modulename.js`
