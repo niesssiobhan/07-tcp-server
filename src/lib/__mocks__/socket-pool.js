@@ -11,9 +11,6 @@ const socketPool = {
   4: { id: 4, nickname:'four', socket:socket },
 };
 
-// This is going to be called whenever a socket does a "write"
-// Its been set up as a jest "spy" so that we can run
-// tests later on on if this has been called
 socketPool.write = jest.fn();
 
 socketPool.remove = (id) => {
