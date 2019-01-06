@@ -12,10 +12,9 @@ const socketPool = {};
 const commands = {};
 
 // Local Modules
-const User = require('./models/user.js');
 const socketPool = require('./lib/socket-pool.js');
-const events = require('./lib/events.js');
-const parseBuffer = require('./lib/parse-buffer.js');
+const events = require('./moduels/events.js');
+const parseBuffer = require('./modules/parse-buffer.js');
 
 let handleConnection = (socket) => {
   let user = new User(socket);
