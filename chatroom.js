@@ -4,17 +4,17 @@
 const net = require('net');
 
 // Third Party Modules
-let requireDir = require('require-dir');
-
-// Local Modules
-const User = require('./models/user.js');
-const socketPool = require('./lib/socket-pool.js');
-const events = require('./lib/events.js');
-const parseBuffer = require('./lib/parse-buffer.js');
-requireDir('./actions/');
+const uuid = require('uuid/v4');
 
 const port = process.env.PORT || 3001;
 const server = net.createServer();
+const socketPool = {};
+const commands = {};
+
+// Local Modules
+const socketPool = require('./lib/socket-pool.js');
+const events = require('./moduels/events.js');
+const parseBuffer = require('./modules/parse-buffer.js');
 
 let handleConnection = (socket) => {
   let user = new User(socket);

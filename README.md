@@ -11,21 +11,31 @@
 * [server](https://git.heroku.com/niess-lab-07.git)
 
 ### Modules
-#### `modulename.js`
+#### `command.js`
+#### `events.js`
+#### `index.js`
+#### `parse-buffer.js`
+#### `socket.js`
+#### `chatroom.js`
+#### `socket-pool.js`
 ##### Exported Values and Methods
 
-###### `foo(thing) -> string`
-Usage Notes or examples
+### Collaborators
+* Becca (helped me later on the side)
 
 ### Setup
 #### `.env` requirements
-* `PORT` - Defined by env
+* `PORT` - 3001
 
 #### Running the app
-* `npm start`
-* Endpoint: `/`
+* In your termail you will first run `node chatroom.js`
+* Open up either a new tab or a window to run `nc localhost 3001`
+* In that same tab from running localhost run `@nick <nickname>` in your terminal 
+* Then you will send a message to multiple peopel by running `@all <message>` in your terminal
+* For individual users you will run `@dm <username> <message>` in your terminal 
 
 #### Tests
 * How do you run tests?
+By using npm run test -watch
 * What assertions were made?
 * What assertions need to be / should be made?
