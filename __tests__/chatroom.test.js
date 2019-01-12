@@ -1,67 +1,63 @@
 'use strict';
 
-
-const action = require('../modules/commands.js');
+const app = require('../app.js');
+const commands = require('../modules/commands.js');
 const events = require('../modules/events.js');
-const index = require('../modules/index.js');
-const parse = require('../modules/parse-buffer');
-const socket = require('../modules/socket.js');
+const logger = require('../modules/logger.js');
 const chatroom = require('../chatroom.js');
 
-describe('chat', () =>{
-  describe('parse buffer', () =>{
+  describe('parse function', () =>{
 
-    it('will return an object', () =>{
-      let buffer = Buffer.from('hi');
-      let result = parse.parseBuffer(buffer);
-      expect(typeof(result)).toEqual('object');
-    });
-
-    it('the object will be returned with the command, the message, and the target', () =>{
-      let buffer = Buffer.from('@list Teagan Heller');
-      let result = parse.parseBuffer(buffer);
-      let commandObj = {
-        command: '@list',
-        message: 'Heller',
-        payload: 'Teagan Heller',
-        target: 'Teagan',
-      };
-      expect(result).toEqual(commandObj);
-    });
-
-    it('if there is no message then it will be undefined', () =>{
-      let buffer = Buffer.from('@list Teagan');
-      let result = parse.parseBuffer(buffer);
-      let commandObject = {
-        command: '@list',
-        message: undefined,
-        payload: 'Teagan',
-        target: 'Teagan',
-      };
-      expect(result).toEqual(commandObject);
+    it('will take in a socketPool', () => {
+      let spy = jest.spyOn(chatroom.socketPool);
+      expect(spy).toHaveBeenCalled();
     });
   });
 
-  describe('@dm action', () => {
-    it('will send nothing if the target user is not valide', () => {
+  describe('parseBuffer, function', () => {
+
+    it('will take in a socketPool', () => {
+      let spy = jest.spyOn(chatroom.socketPool);
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('dispatchAction, function', () => {
+
+    it('will take in a socketPool', () => {
+      let spy = jest.spyOn(chatroom.socketPool);
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('dispatchCommand, function', () => {
+
+    it('will take in a socketPool', () => {
+      let spy = jest.spyOn(chatroom.socketPool);
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('dm@ action', () => {
+
+    it('will not send anything if it is not a valid user', () => {
       let commandObject = {
-        command:'@dm',
-        target:'none',
-        message:'hi',
+        command: '@dm',
+        target: 'unvalid user',
+        message: 'Hello?',
       };
       logger.dm(commandObject, 1);
       expect(chatroom.socketPool.write).not.toHaveBeenCalled();
     });
-  
-    it('will send a message if there is a valid user', () => {
+
+    it('will send a messge if the user is valid', () => {
       let commandObject = {
-        command:'@dm',
-        target:'two',
-        message:'hi',
+        command: '@dm',
+        target: 'two',
+        message: 'Hello there!',
       };
       logger.dm(commandObject, 1);
       expect(chatroom.socketPool.write).toHaveBeenCalled();
-    });
   });
 
 });

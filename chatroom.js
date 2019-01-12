@@ -12,27 +12,32 @@ const socketPool = {};
 const commands = {};
 
 // Local Modules
-const socketPool = require('./lib/socket-pool.js');
-const events = require('./moduels/events.js');
-const parseBuffer = require('./modules/parse-buffer.js');
+const app = require('./app.js');
+const events = require('./modules/events.js');
+const logger = require('./modules/logger.js');
 
-let handleConnection = (socket) => {
-  let user = new User(socket);
-  socketPool.add(user);
-  socket.on('data', (buffer) => dispatchAction(user.id, buffer));
-};
+let socketArr = {};
 
-let dispatchAction = (userId, buffer) => {
-  let entry = parseBuffer(buffer);
-  entry && events.emit(entry.command, entry, userId);
-};
+server.on('connection', (socket) => {
+  let id = uuid();
+  socketPool[id] = {
+    id: id,
+    nickname: `User-${id}`,
+    socket: socket,
+  };
+  socketArr['newId'] = socketPool[id].id;
+  socket.on('data', (buffer) => events.emit('emitting-socket', buffer, id, socketPool, socketArr));
+});
 
-let startServer = () => {
-  server.listen(port, () => {
-    console.log(`Chat Server up on ${port}`);
+events.on('quit', quitServer);
+
+function quitServer(data, userId, socketPool) {
+  server.close('connection', (cb) => {
+   cb (console.log('the user has left'));
   });
-};
+}
+server.listen(port, () => {
+  console.log(`chat server is up on ${port}`);
+});
 
-server.on('connection', handleConnection);
-
-module.exports = {startServer};
+module.exports = {server, socketArr};
